@@ -1,5 +1,5 @@
 import os
-
+import json
 
 def write_file(working_directory: str, file_path: str, content: str) -> str:
     try:
@@ -28,3 +28,29 @@ def write_file(working_directory: str, file_path: str, content: str) -> str:
 
     except Exception as e:
         return f'Error: Failed to write to "{file_path}". Exception: {str(e)}'
+    
+
+
+
+
+schema_write_file = {
+    "type": "function",
+    "function": {
+        "name": "write_file",
+        "description": "Writes content to a specified file relative to the working directory, creating any necessary directories",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "Content to write to the file",
+                },
+                "file_path": {
+                    "type": "string",
+                    "description": "Path to the file to write to, relative to the working directory",
+                },
+            },
+        },
+        "required": ["file_path"],
+    },
+}
